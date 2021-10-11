@@ -1,16 +1,12 @@
-import { TextField } from '@material-ui/core';
-import React, {useState} from 'react';
+import React from 'react';
+import Listview from './components/Listview';
 import './App.css';
 
-
+console.log('main test');
 function App() {
-  const [count, setCount] = useState("");
-
-  return (
-    <div className="App">
-      <TextField id ='name' onChange={e=>setCount(e.target.value)}>
-      </TextField>
-      <p>Above entered Value will be displayed here : </p><p id='displayText'>{count}</p>
+  return(
+    <div>
+      <Listview/>
     </div>
   );
 }
