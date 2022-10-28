@@ -1,0 +1,7 @@
+.form {
+  display: block;
+  justify-content: flex-end;
+  align-items: baseline;
+  align-self: flex-end;
+  flex-direction: column;
+}
