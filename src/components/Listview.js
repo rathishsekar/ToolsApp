@@ -1,10 +1,13 @@
-import { List, ListItem, ListItemText } from '@material-ui/core';
+import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import CountryGridView from './CountryGridView.js';
+import CountryListView from './CountryListView.js';
 
 function Listview() {
   const noCountryError = [{ name: 'no country available' }, { flag: '' }];
   const [countries, setCountries] = useState(noCountryError);
+  const [view, setView] = useState('list');
 
   var path = 'https://countriesnow.space/api/v0.1/countries/flag/unicode';
   useEffect(() => {
@@ -18,26 +21,29 @@ function Listview() {
     );
   }, []);
 
-  console.log('listview');
+  const selectionChangeHandler = (event) => {
+    setView(event.target.value);
+  };
 
   return (
     <div className="App">
-      <List>
-        {countries.map((item) => (
-          <ListItem
-            key={item.name}
-            style={{
-              border: '1px solid',
-              borderRadius: '3px',
-              margin: '1px 5px',
-              maxWidth: '400px',
-            }}
-          >
-            <ListItemText key={item.name} primary={item.name} />
-            <p>{item.unicodeFlag}</p>
-          </ListItem>
-        ))}
-      </List>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Select View</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          label="Select View"
+          onChange={selectionChangeHandler}
+        >
+          <MenuItem value={'list'}>list</MenuItem>
+          <MenuItem value={'grid'}>grid</MenuItem>
+        </Select>
+      </FormControl>
+      {view == 'list' ? (
+        <CountryListView data={countries} />
+      ) : (
+        <CountryGridView data={countries} />
+      )}
     </div>
   );
 }
