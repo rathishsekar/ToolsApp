@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import CountryGridView from './CountryGridView.js';
 import CountryListView from './CountryListView.js';
+import ReactGA from 'react-ga';
 
 function Listview() {
   const noCountryError = [{ name: 'no country available' }, { flag: '' }];
@@ -23,7 +24,12 @@ function Listview() {
 
   const selectionChangeHandler = (event) => {
     setView(event.target.value);
+    ReactGA.event({
+      category: 'User',
+      action: 'Changed View',
+    });
   };
+  ReactGA.pageview(window.location.pathname);
 
   return (
     <div className="App">
