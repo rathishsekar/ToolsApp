@@ -3,7 +3,7 @@ import Listview from './components/Listview';
 import './App.css';
 import ReactGA from 'react-ga';
 import Dummy from './components/Dummy.js';
-import { withRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 console.log('main test');
 function App() {

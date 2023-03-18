@@ -1,11 +1,12 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useNavigate } from 'react';
 import CountryGridView from './CountryGridView.js';
 import CountryListView from './CountryListView.js';
 import ReactGA from 'react-ga';
 
 function Listview() {
+  const navigate = useNavigate('/');
   const noCountryError = [{ name: 'no country available' }, { flag: '' }];
   const [countries, setCountries] = useState(noCountryError);
   const [view, setView] = useState('list');
@@ -33,6 +34,9 @@ function Listview() {
 
   return (
     <div className="App">
+      <button className="btn btn-success" onClick={navigate('/contacts')}>
+        Explore Courses
+      </button>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Select View</InputLabel>
         <Select

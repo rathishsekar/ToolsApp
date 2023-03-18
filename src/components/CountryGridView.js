@@ -1,5 +1,11 @@
-import { Grid, Paper } from '@material-ui/core';
+import { Grid, makeStyles, Paper } from '@material-ui/core';
 function CountryGridView(props) {
+  const classes = makeStyles({
+    griditem: {
+      padding: '10px',
+      margin: '3px',
+    },
+  });
   return (
     <div>
       <Grid
@@ -9,7 +15,7 @@ function CountryGridView(props) {
       >
         {props.data.map((item) => (
           <Grid item xs={2} sm={4} md={4} key={item.name}>
-            <Paper>
+            <Paper className={classes.griditem}>
               {item.name} {item.unicodeFlag}
             </Paper>
           </Grid>
